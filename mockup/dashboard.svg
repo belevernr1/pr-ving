@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1200" viewBox="0 0 1680 1200">
+<defs>
+  <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0d1424"/>
+    <stop offset="0.5" stop-color="#0a0f1c"/>
+    <stop offset="1" stop-color="#05070e"/>
+  </linearGradient>
+  <radialGradient id="glow1" cx="0.18" cy="0.12" r="0.5">
+    <stop offset="0" stop-color="#2a3f6b" stop-opacity="0.55"/>
+    <stop offset="1" stop-color="#2a3f6b" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glow2" cx="0.9" cy="0.95" r="0.5">
+    <stop offset="0" stop-color="#5b3f8a" stop-opacity="0.45"/>
+    <stop offset="1" stop-color="#5b3f8a" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="cardgrad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/>
+    <stop offset="1" stop-color="#ffffff" stop-opacity="0.035"/>
+  </linearGradient>
+  <linearGradient id="amber" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ffd27a"/>
+    <stop offset="1" stop-color="#ff9e3d"/>
+  </linearGradient>
+  <linearGradient id="amberdim" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3a2f1e"/>
+    <stop offset="1" stop-color="#2a2114"/>
+  </linearGradient>
+  <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#7ef0e8"/>
+    <stop offset="1" stop-color="#3fb6d6"/>
+  </linearGradient>
+  <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#b69bff"/>
+    <stop offset="1" stop-color="#7b62e8"/>
+  </linearGradient>
+  <linearGradient id="media" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ff7a59"/>
+    <stop offset="0.5" stop-color="#d6457a"/>
+    <stop offset="1" stop-color="#7b3fb0"/>
+  </linearGradient>
+  <linearGradient id="railactive" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ffd27a"/>
+    <stop offset="1" stop-color="#ff9e3d"/>
+  </linearGradient>
+</defs>
+<rect x="0" y="0" width="1680" height="1200" rx="70" ry="70" fill="#15171c" opacity="1.0" />
+<rect x="10" y="10" width="1660" height="1180" rx="62" ry="62" fill="#0b0d11" opacity="1.0" stroke="#2a2d34" stroke-width="2" />
+<clipPath id="screenclip"><rect x="44" y="44" width="1592" height="1112" rx="40"/></clipPath>
+<g clip-path="url(#screenclip)">
+<rect x="44" y="44" width="1592" height="1112" rx="40" ry="40" fill="url(#screen)" opacity="1.0" />
+<rect x="44" y="44" width="1592" height="1112" fill="url(#glow1)"/>
+<rect x="44" y="44" width="1592" height="1112" fill="url(#glow2)"/>
+<circle cx="840.0" cy="28" r="5" fill="#23262d"/>
+<circle cx="840.0" cy="28" r="2" fill="#3a4a6a"/>
+<rect x="84" y="84" width="96" height="1032" rx="30" ry="30" fill="url(#cardgrad)" opacity="1.0" stroke="#ffffff" stroke-width="1.2" />
+<rect x="100" y="122" width="64" height="64" rx="20" ry="20" fill="url(#railactive)" opacity="1.0" />
+<path d="M 116.0 156 L 132.0 138 L 148.0 156 M 121.0 152 L 121.0 169 L 143.0 169 L 143.0 152" fill="none" stroke="#1a1205" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="132.0" cy="247" r="13" fill="none" stroke="#7d889c" stroke-width="3.2"/><rect x="126.0" y="260" width="12" height="7" rx="3" fill="#7d889c"/>
+<rect x="128.0" y="330" width="8" height="22" rx="4" fill="none" stroke="#7d889c" stroke-width="3"/><circle cx="132.0" cy="356" r="7" fill="#7d889c"/>
+<path d="M 124.0 430 L 124.0 454 L 144.0 442 Z" fill="#7d889c"/>
+<rect x="118.0" y="529" width="20" height="18" rx="4" fill="none" stroke="#7d889c" stroke-width="3"/><path d="M 138.0 535 L 147.0 529 L 147.0 547 L 138.0 541 Z" fill="#7d889c"/>
+<circle cx="132.0" cy="1060" r="26" fill="#1a2336" stroke="#3a4a6a" sw="1"/>
+<rect x="121.0" y="1057" width="22" height="17" rx="4" fill="#7ef0e8"/>
+<path d="M 125.0 1057 L 125.0 1050 A 7 7 0 0 1 139.0 1050 L 139.0 1057" fill="none" stroke="#7ef0e8" stroke-width="3"/>
+<text x="212" y="128" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="44" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">God kveld, Martin</text>
+<text x="212" y="168" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="22" font-weight="normal" fill="#8a94a6" text-anchor="start" opacity="1.0">Hjemme  ·  Alt er rolig  ·  3 lys på</text>
+<text x="1596" y="134" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="52" font-weight="bold" fill="#f4f7fc" text-anchor="end" opacity="1.0">20:06</text>
+<text x="1596" y="168" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="22" font-weight="normal" fill="#8a94a6" text-anchor="end" opacity="1.0">Søndag 14. juni</text>
+<rect x="1236" y="102" width="168" height="66" rx="22" ry="22" fill="url(#cardgrad)" opacity="1.0" stroke="#ffffff" stroke-width="1.2" />
+<circle cx="1270" cy="126" r="13" fill="url(#amber)"/>
+<path d="M 1266 142 q 0 -14 16 -14 q 16 0 16 14 z" fill="#9fb0c8"/>
+<text x="1308" y="128" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="30" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">16°</text>
+<text x="1308" y="154" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="17" font-weight="normal" fill="#8a94a6" text-anchor="start" opacity="1.0">Lett skyet</text>
+<rect x="212" y="204" width="636.64" height="430" rx="26" ry="26" fill="url(#cardgrad)" opacity="1" stroke="#ffffff" stroke-width="1.2" /><rect x="212" y="204" width="636.64" height="430" rx="26" ry="26" fill="none" opacity="0.0" stroke="#ffffff" stroke-width="1.2" />
+<text x="242" y="248" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="28" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">Stue</text>
+<text x="242" y="276" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="normal" fill="#8a94a6" text-anchor="start" opacity="1.0">3 lamper · varmt lys</text>
+<rect x="758.64" y="228" width="60" height="32" rx="16" ry="16" fill="url(#amber)" opacity="1.0" />
+<circle cx="804.64" cy="244" r="12" fill="#fff"/>
+<circle cx="530.3199999999999" cy="436" r="96" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="16"/>
+<path d="M 462.4 503.9 A 96 96 0 1 1 613.0 387.1" fill="none" stroke="url(#amber)" stroke-width="16" stroke-linecap="round"/>
+<text x="530.3199999999999" y="442" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="46" font-weight="bold" fill="#f4f7fc" text-anchor="middle" opacity="1.0">72%</text>
+<text x="530.3199999999999" y="474" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="17" font-weight="normal" fill="#8a94a6" text-anchor="middle" opacity="1.0">Lysstyrke</text>
+<rect x="242.0" y="548" width="181.54666666666665" height="62" rx="18" ry="18" fill="url(#amberdim)" opacity="1" />
+<circle cx="268.0" cy="575" r="13" fill="none" stroke="url(#amber)" stroke-width="3.2"/><rect x="262.0" y="588" width="12" height="7" rx="3" fill="url(#amber)"/>
+<text x="290.0" y="578" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">Tak</text>
+<text x="290.0" y="598" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="14" font-weight="normal" fill="#ffb74d" text-anchor="start" opacity="1.0">På</text>
+<rect x="439.5466666666666" y="548" width="181.54666666666665" height="62" rx="18" ry="18" fill="url(#amberdim)" opacity="1" />
+<circle cx="465.5466666666666" cy="575" r="13" fill="none" stroke="url(#amber)" stroke-width="3.2"/><rect x="459.5466666666666" y="588" width="12" height="7" rx="3" fill="url(#amber)"/>
+<text x="487.5466666666666" y="578" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">Sofa</text>
+<text x="487.5466666666666" y="598" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="14" font-weight="normal" fill="#ffb74d" text-anchor="start" opacity="1.0">På</text>
+<rect x="637.0933333333332" y="548" width="181.54666666666665" height="62" rx="18" ry="18" fill="#ffffff" opacity="0.05" />
+<circle cx="663.0933333333332" cy="575" r="13" fill="none" stroke="#7d889c" stroke-width="3.2"/><rect x="657.0933333333332" y="588" width="12" height="7" rx="3" fill="#7d889c"/>
+<text x="685.0933333333332" y="578" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="bold" fill="#8a94a6" text-anchor="start" opacity="1.0">Vindu</text>
+<text x="685.0933333333332" y="598" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="14" font-weight="normal" fill="#7d889c" text-anchor="start" opacity="1.0">Av</text>
+<rect x="874.64" y="204" width="347.68" height="200" rx="26" ry="26" fill="url(#cardgrad)" opacity="1" stroke="#ffffff" stroke-width="1.2" /><rect x="874.64" y="204" width="347.68" height="200" rx="26" ry="26" fill="none" opacity="0.0" stroke="#ffffff" stroke-width="1.2" />
+<rect x="904.64" y="232" width="8" height="22" rx="4" fill="none" stroke="url(#cyan)" stroke-width="3"/><circle cx="908.64" cy="258" r="7" fill="url(#cyan)"/>
+<text x="936.64" y="244" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="22" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">Klima</text>
+<text x="904.64" y="312" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="52" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">21.5°</text>
+<text x="904.64" y="344" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="17" font-weight="normal" fill="#8a94a6" text-anchor="start" opacity="1.0">Mål 22°  ·  Varme</text>
+<text x="904.64" y="376" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="16" font-weight="normal" fill="#7d889c" text-anchor="start" opacity="1.0">Luft 41%  ·  Stue</text>
+<rect x="1248.32" y="204" width="347.68" height="200" rx="26" ry="26" fill="url(#cardgrad)" opacity="1" stroke="#ffffff" stroke-width="1.2" /><rect x="1248.32" y="204" width="347.68" height="200" rx="26" ry="26" fill="none" opacity="0.0" stroke="#ffffff" stroke-width="1.2" />
+<rect x="1272.32" y="239" width="20" height="18" rx="4" fill="none" stroke="url(#purple)" stroke-width="3"/><path d="M 1292.32 245 L 1301.32 239 L 1301.32 257 L 1292.32 251 Z" fill="url(#purple)"/>
+<text x="1314.32" y="244" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="22" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">Inngang</text>
+<rect x="1278.32" y="266" width="287.68" height="80" rx="14" ry="14" fill="#10182a" opacity="1.0" stroke="#ffffff" stroke-width="1" />
+<circle cx="1298.32" cy="284" r="5" fill="#ff5b5b"/>
+<text x="1310.32" y="289" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="14" font-weight="bold" fill="#ff8a8a" text-anchor="start" opacity="1.0">LIVE</text>
+<text x="1278.32" y="374" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="16" font-weight="normal" fill="#7d889c" text-anchor="start" opacity="1.0">Dør låst  ·  Ingen bevegelse</text>
+<rect x="874.64" y="430" width="721.36" height="204" rx="26" ry="26" fill="url(#cardgrad)" opacity="1" stroke="#ffffff" stroke-width="1.2" /><rect x="874.64" y="430" width="721.36" height="204" rx="26" ry="26" fill="none" opacity="0.0" stroke="#ffffff" stroke-width="1.2" />
+<text x="904.64" y="472" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="24" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">Scener</text>
+<rect x="904.64" y="494" width="153.34" height="110" rx="20" ry="20" fill="#ffffff" opacity="0.05" />
+<circle cx="981.31" cy="538" r="22" fill="url(#amber)" opacity="0.9"/>
+<text x="981.31" y="590" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="bold" fill="#dfe5ef" text-anchor="middle" opacity="1.0">Kveld</text>
+<rect x="1073.98" y="494" width="153.34" height="110" rx="20" ry="20" fill="#ffffff" opacity="0.05" />
+<circle cx="1150.65" cy="538" r="22" fill="url(#purple)" opacity="0.9"/>
+<text x="1150.65" y="590" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="bold" fill="#dfe5ef" text-anchor="middle" opacity="1.0">Film</text>
+<rect x="1243.32" y="494" width="153.34" height="110" rx="20" ry="20" fill="#ffffff" opacity="0.05" />
+<circle cx="1319.99" cy="538" r="22" fill="url(#cyan)" opacity="0.9"/>
+<text x="1319.99" y="590" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="bold" fill="#dfe5ef" text-anchor="middle" opacity="1.0">Natt</text>
+<rect x="1412.6599999999999" y="494" width="153.34" height="110" rx="20" ry="20" fill="#ffffff" opacity="0.05" />
+<circle cx="1489.33" cy="538" r="22" fill="#6b7689" opacity="0.9"/>
+<text x="1489.33" y="590" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="18" font-weight="bold" fill="#dfe5ef" text-anchor="middle" opacity="1.0">Borte</text>
+<rect x="212" y="660" width="1384" height="456" rx="26" ry="26" fill="url(#cardgrad)" opacity="1" stroke="#ffffff" stroke-width="1.2" /><rect x="212" y="660" width="1384" height="456" rx="26" ry="26" fill="none" opacity="0.0" stroke="#ffffff" stroke-width="1.2" />
+<rect x="236" y="684" width="408" height="408" rx="18" ry="18" fill="url(#media)" opacity="1.0" />
+<circle cx="440.0" cy="888.0" r="65.28" fill="#0a0f1c" opacity="0.6"/>
+<circle cx="440.0" cy="888.0" r="20.400000000000002" fill="#fff" opacity="0.8"/>
+<text x="672" y="710" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="16" font-weight="normal" fill="#8a94a6" text-anchor="start" opacity="1.0">Spiller nå · Sonos Stue</text>
+<text x="672" y="750" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="30" font-weight="bold" fill="#f4f7fc" text-anchor="start" opacity="1.0">Midnight City</text>
+<text x="672" y="780" font-family="DejaVu Sans, Liberation Sans, sans-serif" font-size="20" font-weight="normal" fill="#a7b1c2" text-anchor="start" opacity="1.0">M83</text>
+<rect x="672" y="1072" width="664" height="7" rx="4" ry="4" fill="#ffffff" opacity="0.12" />
+<rect x="672" y="1072" width="305.44" height="7" rx="4" ry="4" fill="url(#cyan)" opacity="1.0" />
+<circle cx="977.44" cy="1075" r="8" fill="#fff"/>
+<path d="M 1356 874.0 L 1342 888.0 L 1356 902.0 M 1370 874.0 L 1356 888.0 L 1370 902.0" fill="none" stroke="#cfd6e2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1446" cy="888.0" r="34" fill="#fff"/>
+<rect x="1436" y="874.0" width="7" height="28" rx="2" fill="#0a0f1c"/>
+<rect x="1449" y="874.0" width="7" height="28" rx="2" fill="#0a0f1c"/>
+<path d="M 1522 874.0 L 1536 888.0 L 1522 902.0 M 1536 874.0 L 1550 888.0 L 1536 902.0" fill="none" stroke="#cfd6e2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="44" y="44" width="1592" height="133.44" rx="40" fill="#ffffff" opacity="0.025"/>
+</svg>
