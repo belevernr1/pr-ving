@@ -547,3 +547,46 @@ views:
           - type: map
             entities:
               - device_tracker.volvo_v60_lokasjon
+
+# =====================================================================
+#  🔮 FREMTID – klar til å lime inn senere
+#  Alt under er KOMMENTAR (gjør ingenting nå). Når du legger til
+#  integrasjonen, fjern '#' foran linjene og lim kortet inn der det
+#  hører hjemme i en "cards:"-liste.
+# =====================================================================
+#
+#  --- KAMERA (når du har en camera.* enhet) -------------------------
+#  - type: picture-glance
+#    title: Inngang
+#    camera_image: camera.DITT_KAMERA
+#    camera_view: live
+#    entities:
+#      - lock.inngangsdor_inngangsdor
+#
+#  --- STRØMPRIS (når Nordpool/Tibber er installert) -----------------
+#  Legg denne serien inn i strøm-grafen under "series:":
+#      - entity: sensor.DIN_STROMPRIS
+#        type: line
+#        name: Pris
+#        color: "#ffce8a"
+#
+#  --- ALARM (når alarm_control_panel.* finnes) ----------------------
+#  - type: custom:mushroom-alarm-control-panel-card
+#    entity: alarm_control_panel.DIN_ALARM
+#    states: [armed_away, armed_home]
+#
+#  --- NY PERSON (flere som bor/bor med deg) -------------------------
+#  Legg som chip i "Statuspiller":
+#      - type: entity
+#        entity: person.NY_PERSON
+#        content_info: name
+#
+#  --- NYTT ROM (kopier en hel ROM-BLOKK i view "Hjem") --------------
+#  1) Legg et romkort i "Romsnarveier" med:
+#        tap_action: { action: navigate, navigation_path: "#NYTT_ROM" }
+#  2) Kopier en "ROM-BLOKK", bytt hash til "#NYTT_ROM" og entitetene.
+#
+#  --- NY UNDERSIDE/FANE ---------------------------------------------
+#  1) Kopier en hel "- title: ... / path: ... / type: sections"-view.
+#  2) Legg en chip i "Fane-navigasjon" som navigerer til /lovelace-kiosk/STI.
+# =====================================================================
