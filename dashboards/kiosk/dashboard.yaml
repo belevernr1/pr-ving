@@ -2,20 +2,16 @@
 #  KIOSK-DASHBOARD  (Lovelace)  –  inspirert av Tunet / ha-fusion
 #  Bygget for iPad i kiosk-modus. Bruker HACS-kort (se README.md).
 #
-#  ALLE entiteter er PLACEHOLDERS – søk på "ENDRE_" og bytt til dine,
-#  eller send meg lista fra Utviklerverktøy -> Tilstander.
+#  ✅ Fylt inn med DINE faktiske entiteter (Martin / Volvo V60 / Flexit /
+#     Hue-spotter / Easee-lader / inngangsdør / total strømmåler).
 #
-#  Struktur:
-#   - view "Hjem"   : statuspiller + faner + masonry-oversikt
-#   - view "Lys"    : rom-for-rom lysstyring
-#   - view "Klima"  : alle termostater
-#   - view "Energi" : strøm/forbruk i detalj
-#   - view "Media"  : Sonos / TV
-#   - view "Kamera" : kameraer
-#   - rom-popups    : klikk på et romkort -> modal (bubble-card)
+#  Mangler i HA pr. nå (lagt inn som kommentar der de hører hjemme):
+#   - Kamera        -> ingen camera.* funnet
+#   - Alarm         -> ingen alarm_control_panel.* funnet
+#   - Strømpris     -> ingen Nordpool/Tibber-sensor (viser total effekt i stedet)
+#   - Egen TV/Sonos -> bare media_player.stua_stua funnet
 #
-#  Skalering: nytt rom = kopier en "ROM-BLOKK" (markert nedenfor),
-#  bytt entitetene, ferdig.
+#  Dashboard-sti må være "lovelace-kiosk" (matcher navigasjonen under).
 # =====================================================================
 title: Hjem
 views:
@@ -27,7 +23,7 @@ views:
     type: sections
     max_columns: 4
     sections:
-      # ---------- Statuspiller: hvem hjemme + nøkkelstatus ----------
+      # ---------- Statuspiller ----------
       - type: grid
         column_span: 4
         cards:
@@ -35,25 +31,26 @@ views:
             alignment: start
             chips:
               - type: entity
-                entity: person.martin          # ENDRE_PERSON_1
+                entity: person.martin_alexandersen
                 content_info: name
               - type: entity
-                entity: person.ingrid          # ENDRE_PERSON_2
-                content_info: name
-              - type: entity
-                entity: media_player.sonos_stue # ENDRE_SONOS
+                entity: media_player.stua_stua
                 icon: mdi:speaker
               - type: entity
-                entity: sensor.elbil_lader_effekt # ENDRE_EV_EFFEKT
+                entity: switch.nedre_vestlia_19_lader
+                name: Lader
                 icon: mdi:ev-station
               - type: entity
-                entity: sensor.strompris        # ENDRE_STROMPRIS (Nordpool/Tibber)
+                entity: sensor.teknisk_rom_strommaler_total_effekt
                 icon: mdi:flash
               - type: entity
-                entity: sensor.inne_temperatur  # ENDRE_INNE_TEMP
-                icon: mdi:home-thermometer
+                entity: sensor.ipad_battery_level   # nettbrettet på veggen
+                icon: mdi:tablet
+              - type: entity
+                entity: lock.inngangsdor_inngangsdor
+                icon: mdi:door
 
-          # ---------- Fane-navigasjon (undersider) ----------
+          # ---------- Fane-navigasjon ----------
           - type: custom:mushroom-chips-card
             alignment: start
             chips:
@@ -79,21 +76,21 @@ views:
                 icon: mdi:play-circle
                 tap_action: { action: navigate, navigation_path: /lovelace-kiosk/media }
               - type: template
-                content: Kamera
-                icon: mdi:cctv
-                tap_action: { action: navigate, navigation_path: /lovelace-kiosk/kamera }
+                content: Bil
+                icon: mdi:car-electric
+                tap_action: { action: navigate, navigation_path: /lovelace-kiosk/bil }
 
-      # ---------- Kolonne 1: Vær + Klima ----------
+      # ---------- Kolonne 1: Vær + Ventilasjon ----------
       - type: grid
         cards:
           - type: weather-forecast
-            entity: weather.forecast_home       # ENDRE_VAR
+            entity: weather.forecast_hjem
             forecast_type: daily
             show_current: true
           - type: custom:mushroom-climate-card
-            entity: water_heater.varmtvann      # ENDRE_VARMTVANN (eller climate.*)
-            name: Varmtvann
-            show_temperature_control: true
+            entity: climate.flexit_nordic
+            name: Ventilasjon (Flexit)
+            show_temperature_control: false
 
       # ---------- Kolonne 2: Strøm + Media ----------
       - type: grid
@@ -101,64 +98,75 @@ views:
           - type: custom:apexcharts-card
             header:
               show: true
-              title: Strøm i dag
+              title: Strømforbruk i dag
               show_states: true
             graph_span: 24h
             series:
-              - entity: sensor.strompris        # ENDRE_STROMPRIS
+              - entity: sensor.teknisk_rom_strommaler_total_effekt
                 type: area
-                name: Pris
+                name: Total effekt
                 color: "#8fd13f"
-              - entity: sensor.effekt_na        # ENDRE_EFFEKT_NA (W/kW nå)
-                type: line
-                name: Forbruk
-                color: "#7ef0e8"
+            # 💡 Når du legger til Nordpool/Tibber: legg prisen inn som ekstra serie.
           - type: custom:mushroom-media-player-card
-            entity: media_player.sonos_stue     # ENDRE_SONOS
+            entity: media_player.stua_stua
             use_media_info: true
             show_volume_level: true
             media_controls: [previous, play_pause, next]
             volume_controls: [volume_mute, volume_set]
 
-      # ---------- Kolonne 3: Elbil-lader + Bil + Kamera ----------
+      # ---------- Kolonne 3: Volvo-lader + Bil + Inngangsdør ----------
       - type: grid
         cards:
           - type: gauge
-            entity: sensor.elbil_lader_soc      # ENDRE_EV_SOC (%)
-            name: Elbil-lader
+            entity: sensor.volvo_v60_batteri
+            name: Volvo V60
+            unit: "%"
             min: 0
             max: 100
-            severity: { green: 0, yellow: 0, red: 0 }
+            needle: true
+            severity: { green: 60, yellow: 30, red: 0 }
           - type: custom:mushroom-template-card
-            primary: Nissan Leaf
-            secondary: "{{ states('sensor.bil_batteri') }}% · {{ states('sensor.bil_rekkevidde') }} km" # ENDRE_BIL
+            primary: Volvo V60
+            secondary: >-
+              {{ states('sensor.volvo_v60_batteri') }}% ·
+              {{ states('sensor.volvo_v60_rekkevidde_til_tomt_batteri') }} km ·
+              {{ states('sensor.volvo_v60_ladeeffekt') }} kW
             icon: mdi:car-electric
             icon_color: blue
             badge_icon: >-
-              {{ 'mdi:home' if is_state('device_tracker.bil','home') else 'mdi:map-marker' }}
-          - type: picture-glance
-            title: Inngang
-            camera_image: camera.inngang        # ENDRE_KAMERA
-            entities:
-              - binary_sensor.inngang_bevegelse # ENDRE_BEVEGELSE
-              - lock.inngang                    # ENDRE_LÅS
+              {{ 'mdi:home' if is_state('device_tracker.volvo_v60_lokasjon','home') else 'mdi:map-marker' }}
+            tap_action: { action: navigate, navigation_path: /lovelace-kiosk/bil }
+          - type: custom:mushroom-template-card
+            primary: Inngangsdør
+            secondary: "{{ 'Låst' if is_state('lock.inngangsdor_inngangsdor','locked') else 'Ulåst' }} · batteri {{ states('sensor.inngangsdor_inngangsdor_batteri') }}%"
+            icon: mdi:door-closed-lock
+            icon_color: >-
+              {{ 'green' if is_state('lock.inngangsdor_inngangsdor','locked') else 'red' }}
+            entity: lock.inngangsdor_inngangsdor
+            tap_action: { action: toggle }
+            # ⚠️ Ingen camera.* i HA enda – legg til et kamera, så bytter vi dette
+            #    kortet til et live-bilde av inngangen.
 
-      # ---------- Kolonne 4: Alarm + Vifte + Nyheter ----------
+      # ---------- Kolonne 4: Lys (hurtig) + Komfyrvakt ----------
       - type: grid
         cards:
-          - type: custom:mushroom-alarm-control-panel-card
-            entity: alarm_control_panel.hjem    # ENDRE_ALARM
-            states: [armed_away, armed_home]
-          - type: custom:mushroom-fan-card
-            entity: fan.kjokken                 # ENDRE_VIFTE
-            show_percentage_control: true
-            icon_animation: true
-          - type: markdown
-            title: Nyheter
-            content: >
-              **NRK** · Ny ladepark åpner i sentrum
-              **VG** · Strømprisene faller til helgen
-              _(byttes til en RSS-feed-sensor – se README)_
+          - type: custom:mushroom-light-card
+            entity: light.stue_spotter_gruppe
+            name: Stue
+            show_brightness_control: true
+            use_light_color: true
+          - type: custom:mushroom-light-card
+            entity: light.lamper_over_oy_kjokken
+            name: Kjøkken
+            show_brightness_control: true
+          - type: custom:mushroom-entity-card
+            entity: switch.komfyrvakt_bryter
+            name: Komfyrvakt
+            icon: mdi:stove
+          - type: custom:mushroom-entity-card
+            entity: switch.flexit_nordic_cooker_hood_mode
+            name: Kjøkkenvifte
+            icon: mdi:fan
 
       # ---------- Romsnarveier -> popups ----------
       - type: grid
@@ -166,28 +174,27 @@ views:
         cards:
           - type: custom:mushroom-template-card
             primary: Stue
-            secondary: Lys · klima · media
+            secondary: Lys · varme · media
             icon: mdi:sofa
             tap_action: { action: navigate, navigation_path: "#stue" }
           - type: custom:mushroom-template-card
             primary: Kjøkken
-            secondary: Lys · vifte
+            secondary: Lys · varme · vifte
             icon: mdi:countertop
             tap_action: { action: navigate, navigation_path: "#kjokken" }
           - type: custom:mushroom-template-card
-            primary: Soverom
-            secondary: Lys · klima
-            icon: mdi:bed
-            tap_action: { action: navigate, navigation_path: "#soverom" }
+            primary: Gang
+            secondary: Lys · gulvvarme
+            icon: mdi:coat-rack
+            tap_action: { action: navigate, navigation_path: "#gang" }
           - type: custom:mushroom-template-card
-            primary: Bad
+            primary: Hovedsoverom
             secondary: Lys · varme
-            icon: mdi:shower
-            tap_action: { action: navigate, navigation_path: "#bad" }
+            icon: mdi:bed
+            tap_action: { action: navigate, navigation_path: "#hovedsov" }
 
       # ===============================================================
-      #  ROM-POPUPS (bubble-card). Skjult til man trykker en romsnarvei.
-      #  ▼▼▼  ROM-BLOKK – kopier hele blokka for nytt rom  ▼▼▼
+      #  ROM-POPUPS (bubble-card).  ▼ ROM-BLOKK – kopier for nytt rom ▼
       # ===============================================================
       - type: grid
         column_span: 4
@@ -198,15 +205,29 @@ views:
             name: Stue
             icon: mdi:sofa
           - type: custom:mushroom-light-card
-            entity: light.stue                  # ENDRE_LYS_STUE
+            entity: light.stue_spotter_gruppe
+            name: Spotter (gruppe)
             show_brightness_control: true
             use_light_color: true
-          - type: custom:mushroom-climate-card
-            entity: climate.stue                # ENDRE_KLIMA_STUE
-            show_temperature_control: true
+          - type: custom:mushroom-light-card
+            entity: light.spotter_ved_tv_stue
+            name: Spotter ved TV
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.lampe_over_spisebord_stue
+            name: Spisebord
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.stikk_over_vinduer_stue
+            name: Vinduer
+            show_brightness_control: true
+          - type: custom:mushroom-entity-card
+            entity: switch.varme_stue_og_kjokken
+            name: Varme stue/kjøkken
+            icon: mdi:radiator
           - type: custom:mushroom-media-player-card
-            entity: media_player.sonos_stue     # ENDRE_MEDIA_STUE
-      #  ▲▲▲  slutt ROM-BLOKK  ▲▲▲
+            entity: media_player.stua_stua
+      #  ▲ slutt ROM-BLOKK ▲
 
       - type: grid
         column_span: 4
@@ -217,39 +238,70 @@ views:
             name: Kjøkken
             icon: mdi:countertop
           - type: custom:mushroom-light-card
-            entity: light.kjokken               # ENDRE_LYS_KJØKKEN
+            entity: light.lamper_over_oy_kjokken
+            name: Lamper over øy
             show_brightness_control: true
-          - type: custom:mushroom-fan-card
-            entity: fan.kjokken                 # ENDRE_VIFTE
+          - type: custom:mushroom-entity-card
+            entity: switch.varme_stue_og_kjokken
+            name: Varme
+            icon: mdi:radiator
+          - type: custom:mushroom-entity-card
+            entity: switch.flexit_nordic_cooker_hood_mode
+            name: Kjøkkenvifte
+            icon: mdi:fan
+          - type: custom:mushroom-entity-card
+            entity: switch.komfyrvakt_bryter
+            name: Komfyrvakt
+            icon: mdi:stove
 
       - type: grid
         column_span: 4
         cards:
           - type: custom:bubble-card
             card_type: pop-up
-            hash: "#soverom"
-            name: Soverom
+            hash: "#gang"
+            name: Gang
+            icon: mdi:coat-rack
+          - type: custom:mushroom-light-card
+            entity: light.spotter_ved_inngang_stue_gang
+            name: Spotter inngang
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.spotter_gang_gang
+            name: Spotter gang
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.gang_ledstripe_tak
+            name: Ledstripe tak
+            show_brightness_control: true
+            use_light_color: true
+          - type: custom:mushroom-climate-card
+            entity: climate.gang_varme_gang_gulv
+            name: Gulvvarme gang
+
+      - type: grid
+        column_span: 4
+        cards:
+          - type: custom:bubble-card
+            card_type: pop-up
+            hash: "#hovedsov"
+            name: Hovedsoverom
             icon: mdi:bed
           - type: custom:mushroom-light-card
-            entity: light.soverom               # ENDRE_LYS_SOVEROM
+            entity: light.spotter_hovedsov_hovedsoverom
+            name: Spotter
             show_brightness_control: true
-          - type: custom:mushroom-climate-card
-            entity: climate.soverom             # ENDRE_KLIMA_SOVEROM
-
-      - type: grid
-        column_span: 4
-        cards:
-          - type: custom:bubble-card
-            card_type: pop-up
-            hash: "#bad"
-            name: Bad
-            icon: mdi:shower
           - type: custom:mushroom-light-card
-            entity: light.bad                   # ENDRE_LYS_BAD
+            entity: light.stikk_over_vindu_hovedsov_hovedsoverom
+            name: Vindu
             show_brightness_control: true
+          - type: custom:mushroom-entity-card
+            entity: switch.hovedsoverom_varme_hovedsov
+            name: Varme
+            icon: mdi:radiator
 
   # ===================================================================
-  #  VIEW 2 – LYS (rom for rom)
+  #  VIEW 2 – LYS (alle rom)
   # ===================================================================
   - title: Lys
     path: lys
@@ -261,34 +313,98 @@ views:
           - type: heading
             heading: Stue
           - type: custom:mushroom-light-card
-            entity: light.stue
+            entity: light.stue_spotter_gruppe
+            name: Spotter (gruppe)
             show_brightness_control: true
             use_light_color: true
-            collapsible_controls: true
+          - type: custom:mushroom-light-card
+            entity: light.spotter_ved_tv_stue
+            name: Ved TV
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.spotter_stue_stue
+            name: Spotter stue
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.lampe_over_spisebord_stue
+            name: Spisebord
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.stikk_over_vinduer_stue
+            name: Vinduer
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.wled
+            name: Ledstripe i tak
+            show_brightness_control: true
+            use_light_color: true
       - type: grid
         cards:
           - type: heading
-            heading: Kjøkken
+            heading: Kjøkken / Pantry
           - type: custom:mushroom-light-card
-            entity: light.kjokken
+            entity: light.lamper_over_oy_kjokken
+            name: Lamper over øy
             show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.spotter_pantry_pantry
+            name: Pantry
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.lys_glass_skap
+            name: Glasskap
+      - type: grid
+        cards:
+          - type: heading
+            heading: Gang
+          - type: custom:mushroom-light-card
+            entity: light.spotter_ved_inngang_stue_gang
+            name: Spotter inngang
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.spotter_gang_gang
+            name: Spotter gang
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.gang_ledstripe_tak
+            name: Ledstripe tak
+            show_brightness_control: true
+            use_light_color: true
       - type: grid
         cards:
           - type: heading
             heading: Soverom
           - type: custom:mushroom-light-card
-            entity: light.soverom
+            entity: light.spotter_hovedsov_hovedsoverom
+            name: Hovedsov – spotter
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.stikk_over_vindu_hovedsov_hovedsoverom
+            name: Hovedsov – vindu
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.gjeste_soverom_lys_gjeste_soverom
+            name: Gjesterom
             show_brightness_control: true
       - type: grid
         cards:
           - type: heading
-            heading: Bad
+            heading: Vaskerom / Teknisk / Ute
           - type: custom:mushroom-light-card
-            entity: light.bad
+            entity: light.lys_vaskerom_vaskerom
+            name: Vaskerom
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.spott_teknisk_tekniskrom
+            name: Tekniskrom
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.utelys_utebelysning
+            name: Utelys
             show_brightness_control: true
 
   # ===================================================================
-  #  VIEW 3 – KLIMA
+  #  VIEW 3 – KLIMA (varme + ventilasjon)
   # ===================================================================
   - title: Klima
     path: klima
@@ -298,11 +414,45 @@ views:
       - type: grid
         cards:
           - type: heading
-            heading: Termostater
+            heading: Ventilasjon
           - type: thermostat
-            entity: climate.stue
+            entity: climate.flexit_nordic
+      - type: grid
+        cards:
+          - type: heading
+            heading: Gulvvarme
           - type: thermostat
-            entity: climate.soverom
+            entity: climate.gang_varme_gang_gulv
+          - type: thermostat
+            entity: climate.gang_varmme_yttergang_varme_yttergang_gulv
+          - type: thermostat
+            entity: climate.varme_hovedbad_toalett
+          - type: thermostat
+            entity: climate.varme_pantey
+      - type: grid
+        cards:
+          - type: heading
+            heading: Varme (av/på)
+          - type: custom:mushroom-entity-card
+            entity: switch.varme_stue_og_kjokken
+            name: Stue og kjøkken
+            icon: mdi:radiator
+          - type: custom:mushroom-entity-card
+            entity: switch.shelly1pmg4_a085e3c77fe8
+            name: Gang
+            icon: mdi:radiator
+          - type: custom:mushroom-entity-card
+            entity: switch.hovedsoverom_varme_hovedsov
+            name: Hovedsoverom
+            icon: mdi:radiator
+          - type: custom:mushroom-entity-card
+            entity: switch.gang_varmme_yttergang
+            name: Yttergang
+            icon: mdi:radiator
+          - type: custom:mushroom-entity-card
+            entity: switch.flexit_nordic_elektrisk_varmeovn
+            name: Flexit el-varme
+            icon: mdi:radiator
 
   # ===================================================================
   #  VIEW 4 – ENERGI
@@ -315,16 +465,35 @@ views:
       - type: grid
         column_span: 3
         cards:
-          - type: energy-distribution      # HA innebygd energi-dashbord-kort
-            link_dashboard: true
-      - type: grid
-        cards:
           - type: custom:apexcharts-card
-            header: { show: true, title: Strømpris siste døgn }
+            header: { show: true, title: Total effekt siste døgn }
             graph_span: 24h
             series:
-              - entity: sensor.strompris
+              - entity: sensor.teknisk_rom_strommaler_total_effekt
                 type: area
+                name: Total
+      - type: grid
+        cards:
+          - type: heading
+            heading: Forbruk per krets
+          - type: custom:mushroom-entity-card
+            entity: sensor.varme_stue_og_kjokken_effekt
+            name: Varme stue/kjøkken
+          - type: custom:mushroom-entity-card
+            entity: sensor.hovedsoverom_varme_hovedsov_effekt
+            name: Varme hovedsov
+          - type: custom:mushroom-entity-card
+            entity: sensor.gang_varmme_yttergang_effekt
+            name: Varme yttergang
+          - type: custom:mushroom-entity-card
+            entity: sensor.shelly1pmg4_a085e3c77fe8_effekt
+            name: Varme gang
+          - type: custom:mushroom-entity-card
+            entity: sensor.komfyrvakt_effekt
+            name: Komfyr
+          - type: custom:mushroom-entity-card
+            entity: sensor.nedre_vestlia_19_ladeeffekt
+            name: Elbil-lader
 
   # ===================================================================
   #  VIEW 5 – MEDIA
@@ -332,25 +501,49 @@ views:
   - title: Media
     path: media
     type: sections
-    max_columns: 3
-    sections:
-      - type: grid
-        cards:
-          - type: custom:mushroom-media-player-card
-            entity: media_player.sonos_stue
-          - type: custom:mushroom-media-player-card
-            entity: media_player.tv_stue      # ENDRE_TV
-
-  # ===================================================================
-  #  VIEW 6 – KAMERA
-  # ===================================================================
-  - title: Kamera
-    path: kamera
-    type: sections
     max_columns: 2
     sections:
       - type: grid
         cards:
-          - type: picture-entity
-            entity: camera.inngang
-            camera_view: live
+          - type: custom:mushroom-media-player-card
+            entity: media_player.stua_stua
+            use_media_info: true
+
+  # ===================================================================
+  #  VIEW 6 – BIL (Volvo V60)
+  # ===================================================================
+  - title: Bil
+    path: bil
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Volvo V60
+          - type: gauge
+            entity: sensor.volvo_v60_batteri
+            name: Batteri
+            unit: "%"
+            min: 0
+            max: 100
+            needle: true
+            severity: { green: 60, yellow: 30, red: 0 }
+          - type: custom:mushroom-template-card
+            primary: Rekkevidde
+            secondary: "{{ states('sensor.volvo_v60_rekkevidde_til_tomt_batteri') }} km"
+            icon: mdi:map-marker-distance
+          - type: custom:mushroom-template-card
+            primary: Lader
+            secondary: "{{ states('sensor.volvo_v60_ladeeffekt') }} kW · {{ states('sensor.volvo_v60_status_for_ladeeffekt') }}"
+            icon: mdi:ev-station
+          - type: custom:mushroom-lock-card
+            entity: lock.volvo_v60_las
+            name: Lås
+      - type: grid
+        cards:
+          - type: heading
+            heading: Posisjon
+          - type: map
+            entities:
+              - device_tracker.volvo_v60_lokasjon

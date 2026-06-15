@@ -93,13 +93,25 @@ veggtablet-app, men Veiledet tilgang dekker «begrenset kontroll» helt fint.)
 
 ---
 
-## 7. Det jeg trenger fra deg for å gjøre den «ekte»
+## 7. Status: fylt inn med dine faktiske entiteter ✅
 
-Send meg gjerne, så bytter jeg ut alle `ENDRE_…`:
-- Personer (`person.*`), vær (`weather.*`)
-- Strømpris-sensor (Nordpool/Tibber) + effekt-nå-sensor
-- Elbil-lader (effekt/%/status) + bil (batteri/rekkevidde/device_tracker)
-- Lys per rom, klima/termostater, vifter
-- Media (Sonos/TV), kameraer, alarm
+Dashbordet er nå koblet til ditt ekte oppsett:
+- **Person:** `person.martin_alexandersen` (+ iPad/iPhone-batteri)
+- **Vær:** `weather.forecast_hjem`
+- **Bil:** Volvo V60 (batteri, rekkevidde, ladeeffekt, posisjon, lås)
+- **Elbil-lader:** `switch.nedre_vestlia_19_lader` + `sensor.nedre_vestlia_19_ladeeffekt`
+- **Strøm:** `sensor.teknisk_rom_strommaler_total_effekt` + effekt per krets
+- **Lys:** alle Hue-spotter/stripene per rom (Stue, Kjøkken, Gang, Soverom, Vaskerom, Teknisk, Ute …)
+- **Klima:** Flexit-ventilasjon + gulvvarme (`climate.*`) + varme-brytere (`switch.*`)
+- **Media:** `media_player.stua_stua`
+- **Sikkerhet:** `lock.inngangsdor_inngangsdor`
 
-Enkleste vei: Utviklerverktøy → Tilstander → kopier lista, eller send skjermbilde.
+### Mangler i HA pr. nå (anbefalte tillegg)
+| Ønske | Mangler | Forslag |
+|-------|---------|---------|
+| Kamera ved inngang | ingen `camera.*` | Legg til kamera-integrasjon → bytt inngangsdør-kortet til live-bilde |
+| Strømpris-graf | ingen Nordpool/Tibber | Installer **Nordpool** eller **Tibber** → prisen legges inn som ekstra serie i strøm-grafen |
+| Alarm-panel | ingen `alarm_control_panel.*` | Sett opp HA sin Manual Alarm, eller dropp |
+| «Hvem hjemme» m/flere | kun 1 person | Legg til flere `person.*` ved behov |
+
+Si fra når du legger til noe av dette, så plugger jeg det rett inn.
