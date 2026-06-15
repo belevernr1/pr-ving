@@ -1,0 +1,47 @@
+# =====================================================================
+#  Glass Kiosk  –  mørkt glassmorphism-tema for iPad-kiosk
+#  Legg denne fila i  config/themes/  og restart / "reload themes".
+#  Velg temaet på dashbordet (3 prikker -> Rediger -> ... -> tema)
+#  eller per bruker i Profil -> Tema.
+# =====================================================================
+Glass Kiosk:
+  # ---------- palett ----------
+  primary-color: "#ff9e3d"
+  accent-color: "#7ef0e8"
+  app-header-background-color: "transparent"
+  app-header-text-color: "#e7edf5"
+  primary-background-color: "#0a141c"
+  secondary-background-color: "#0d1620"
+  divider-color: "rgba(255,255,255,0.08)"
+  primary-text-color: "#e7edf5"
+  secondary-text-color: "#8794a8"
+  disabled-text-color: "#62708a"
+
+  # ---------- kort ----------
+  card-background-color: "rgba(255,255,255,0.06)"
+  ha-card-background: "rgba(255,255,255,0.055)"
+  ha-card-border-radius: "24px"
+  ha-card-border-width: "1px"
+  ha-card-border-color: "rgba(255,255,255,0.10)"
+  ha-card-box-shadow: "0 8px 30px rgba(0,0,0,0.35)"
+
+  # ---------- bakgrunn (de myke fargeklattene fra utkastet) ----------
+  lovelace-background: >-
+    radial-gradient(circle at 15% 18%, rgba(29,106,115,0.45), transparent 45%),
+    radial-gradient(circle at 85% 12%, rgba(58,79,138,0.40), transparent 45%),
+    radial-gradient(circle at 70% 95%, rgba(90,58,122,0.38), transparent 50%),
+    linear-gradient(160deg, #0a141c 0%, #0a1620 50%, #070d14 100%)
+
+  # ---------- mushroom ----------
+  mush-rgb-amber: "255,158,61"
+  mush-rgb-blue: "59,123,240"
+  mush-spacing: "10px"
+  mush-icon-border-radius: "18px"
+
+  # ---------- card-mod: ekte "frosset glass" (blur) ----------
+  card-mod-theme: Glass Kiosk
+  card-mod-card: |
+    ha-card {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
